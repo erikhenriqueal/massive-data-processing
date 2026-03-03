@@ -9,7 +9,7 @@ writeStream.write("id,name,email,value,date\n");
 console.log("Generating CSV data...");
 
 for (let i = 0; i < TOTAL_ROWS; i++) {
-  const id = i % 1000 ? 1234567 : Math.floor(Math.random() * 1e6); // For every 1000 rows, use a fixed ID to create duplicates
+  const id = i % 1000 === 0 ? 1234567 : Math.floor(Math.random() * 1e6); // For every 1000 rows, use a fixed ID to create duplicates
   const name = `User_${i}`;
   const email = `user${i}@example.com`;
   const value = Math.floor(Math.random() * 1000).toFixed(2);
@@ -17,7 +17,9 @@ for (let i = 0; i < TOTAL_ROWS; i++) {
     Date.now() - Math.floor(Math.random() * 365) * 24 * 60 * 60 * 1000, // Random date within the last year
   ).toISOString();
 
-  writeStream.write(`${id},${name},${email},${value},${date}\n`);
+  writeStream.write(
+    `${id},${name},${email},${value},${date}${i === TOTAL_ROWS - 1 ? "" : "\n"}`,
+  );
 }
 
 writeStream.end(() => {
