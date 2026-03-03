@@ -50,10 +50,13 @@ async function logUsage<T>(callback: () => Promise<T>): Promise<T> {
 }
 
 logUsage(() => streamMap("./data.csv")).then((duplicates) => {
+  // Convert the iterator of duplicates to an array for easier logging
   const duplicatesArray = Array.from(duplicates);
+
+  // I know my approach here is not the most efficient, but I wanted to log the duplicates in a more readable format.
   console.log(
     "Duplicates:",
-    duplicatesArray.reduce((acc, [id, count]) => `${acc}, ${id}(${count})`, ""),
+    duplicatesArray.map(([id, count]) => `${id}(${count})`).join(", "),
   );
   console.log(
     `Total duplicates occurences: ${duplicatesArray.reduce((acc, [_, count]) => acc + count, 0)}`,
