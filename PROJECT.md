@@ -10,7 +10,7 @@
 >
 > - **Technical Goal:** Use **Node.js Streams** (to prevent RAM to explode) and **Sets/Maps** for search &mdash; *`O(1)`*;
 >
-> - **What am I proving?** I undestand (or at least I'm learning) the **Big O Notation** (especially applied on `Node.js`). I'll compare some different approaches to achieve the same result, and log every relevant information (execution time, CPU/RAM usage)
+> - **What am I proving?** I undestand (or at least I'm learning) the **Big O Notation** (especially applied on `Node.js`). I'll compare some different approaches to achieve the same result, and log every relevant information (execution time, RAM usage)
 
 ## What did I learn?
 

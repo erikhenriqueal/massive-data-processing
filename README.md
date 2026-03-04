@@ -73,4 +73,4 @@ npm start
 
 ## Considerations
 
-> This project shows up my proficiency on leading with **Node.js Internals**, **Data Structures** and **Performance Optimization**,  Este projeto demonstra minha proficiência em lidar com **Node.js Internals**, **Data Structures** e **Performance Optimization**, crucial skills for developing scalable and efficient systems.
+> This project shows up my proficiency on leading with **Node.js Internals**, **Data Structures** and **Performance Optimization**, crucial skills for developing scalable and efficient systems.
