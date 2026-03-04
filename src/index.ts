@@ -10,7 +10,7 @@ import { formatBytes } from "./utils";
  * @param path Target CSV file's path
  * @returns An Iterator of entries containing duplicate IDs and their counts.
  */
-async function streamMap(path: string = "./data.csv") {
+export async function streamMap(path: string = "./data.csv") {
   const parser = createReadStream(path).pipe(parse({ fromLine: 2 }));
 
   // Map to count occurrences of each ID
@@ -34,7 +34,9 @@ async function streamMap(path: string = "./data.csv") {
  * @param callback Target function to measure memory usage and execution time.
  * @returns The result of the callback function.
  */
-async function logUsage<T>(callback: () => Promise<T>): Promise<T> {
+export async function logUsage<T>(
+  callback: () => Promise<T>,
+): Promise<{ data: T; memoryUsage: string; executionTime: string }> {
   const m0 = process.memoryUsage().heapUsed;
   const t0 = performance.now();
 
@@ -46,10 +48,14 @@ async function logUsage<T>(callback: () => Promise<T>): Promise<T> {
   console.log(`Memory usage: ${formatBytes(m1 - m0)}`);
   console.log(`Time taken: ${(t1 - t0).toFixed(2)} ms`);
 
-  return data;
+  return {
+    data,
+    memoryUsage: formatBytes(m1 - m0),
+    executionTime: (t1 - t0).toFixed(2),
+  };
 }
 
-logUsage(() => streamMap("./data.csv")).then((duplicates) => {
+logUsage(() => streamMap("./data.csv")).then(({ data: duplicates }) => {
   // Convert the iterator of duplicates to an array for easier logging
   const duplicatesArray = Array.from(duplicates);
 
