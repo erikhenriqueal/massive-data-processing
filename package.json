@@ -4,7 +4,11 @@
   "type": "module",
   "main": "dist/index.js",
   "repository": "https://github.com/erikhenriqueal/massive-data-processing.git",
-  "author": "Erik Lima <erikhalima05@gmail.com>",
+  "author": {
+    "name": "Erik H. A. Lima",
+    "email": "erikhalima05@gmail.com",
+    "url": "https://github.com/erikhenriqueal"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^25.3.3",
