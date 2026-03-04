@@ -1,7 +1,7 @@
 import { createReadStream } from "fs";
 import { parse } from "csv-parse";
 
-import { formatBytes } from "./utils";
+import { formatBytes } from "./utils.js";
 
 /**
  * Reads a CSV file using a Readable Stream, counts the occurrences
@@ -55,16 +55,4 @@ export async function logUsage<T>(
   };
 }
 
-logUsage(() => streamMap("./data.csv")).then(({ data: duplicates }) => {
-  // Convert the iterator of duplicates to an array for easier logging
-  const duplicatesArray = Array.from(duplicates);
-
-  // I know my approach here is not the most efficient, but I wanted to log the duplicates in a more readable format.
-  console.log(
-    "Duplicates:",
-    duplicatesArray.map(([id, count]) => `${id}(${count})`).join(", "),
-  );
-  console.log(
-    `Total duplicates occurences: ${duplicatesArray.reduce((acc, [_, count]) => acc + count, 0)}`,
-  );
-});
+logUsage(() => streamMap("./data.csv"));
